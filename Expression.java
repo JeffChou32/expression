@@ -1,5 +1,3 @@
-// Starter code for Project 1
-
 // jxc033200
 //package dsa;
 
@@ -20,7 +18,7 @@ import java.io.File;
 */
 
 public class Expression {
-    public enum TokenType {  // NIL is a special token that can be used to mark bottom of stack
+    public enum TokenType {  // NIL marks bottom of stack
 	    PLUS, TIMES, MINUS, DIV, MOD, POWER, OPEN, CLOSE, NIL, NUMBER
     }
     
@@ -57,13 +55,12 @@ public class Expression {
     // Create token corresponding to a string
     // tok is "+" | "*" | "-" | "/" | "%" | "^" | "(" | ")"| NUMBER
     // NUMBER is either "0" or "[-]?[1-9][0-9]*
-    static Token getToken(String tok) {  // To do
+    static Token getToken(String tok) { 
         Token result;
         switch(tok) {
         case "+":
             result = new Token(TokenType.PLUS, 1, tok);  // modify if priority of "+" is not 1
-            break;
-            // Complete rest of this method
+            break;            
         case "-":
             result = new Token(TokenType.MINUS, 1, tok); 
             break;
@@ -134,7 +131,7 @@ public class Expression {
      * @return expression.pop() - returns the expression tree
      * 
     */
-    public static Expression infixToExpression(List<Token> exp) {  // To do
+    public static Expression infixToExpression(List<Token> exp) {  
         Deque<Token> operator = new ArrayDeque<>(); //a stack for operators
         Deque<Expression> expression = new ArrayDeque<>(); //a stack for the expression tree
         operator.push(new Token(TokenType.NIL, 0, "")); //NIL as marker for bottom        
@@ -212,7 +209,7 @@ public class Expression {
      * @return postFix - returns the postFix linked list
      * 
     */
-    public static List<Token> infixToPostfix(List<Token> exp) {  // To do
+    public static List<Token> infixToPostfix(List<Token> exp) { 
         Deque<Token> operator = new ArrayDeque<>(); //operator stack
         List<Token>postFix = new LinkedList<>(); //postfix stack
         operator.push(new Token(TokenType.NIL, 0, "")); //marks bottom of stack        
@@ -271,7 +268,7 @@ public class Expression {
      * @return operand.pop().number - returns the evaluated value
      * 
     */    
-    public static long evaluatePostfix(List<Token> exp) {  // To do
+    public static long evaluatePostfix(List<Token> exp) { 
         Deque<Token> operand = new ArrayDeque<>(); //make a stack of operands
         Iterator<Token> iter = exp.iterator();        
         while (iter.hasNext()) {
@@ -322,7 +319,7 @@ public class Expression {
      * @return result - returns the evaluated value
      * 
     */        
-    public static long evaluateExpression(Expression tree) {  // To do
+    public static long evaluateExpression(Expression tree) {  
         if (tree.left == null && tree.right == null) //if left and right are null, the node is a leaf (operand)
             return tree.element.number;
         else {
@@ -354,7 +351,6 @@ public class Expression {
         }	    
     }
 
-    // sample main program for testing
     public static void main(String[] args) throws FileNotFoundException {
         Scanner in;
         
